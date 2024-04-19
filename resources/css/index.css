@@ -1,0 +1,82 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* .navbar{
+    height: 91px;
+    background: #FFFFFF;
+} */
+
+
+.rect {
+  position: absolute;
+  width: 27px;
+  height: 9px;
+  left: 12px;
+  top: 21px;
+
+  background: linear-gradient(96.34deg, #e537b9 0%, #c040df 100%);
+  border-radius: 4.5px;
+}
+
+.brand-container{
+    position: relative;
+    height: 91px;
+}
+
+.brand-name{
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    color: #292B2E;
+}
+
+.today{
+font-weight: 600;
+font-size: 24px;
+line-height: 32px;
+}
+
+.insight{
+    font-size: 18px;
+line-height: 28px;
+margin-bottom: 30px;
+}
+
+.accordion-button{
+    font-size: 16px;
+    font-weight: 700;
+    color: #737373 !important;
+}
+
+.accordion-item{
+    border: none !important;
+}
+
+.card-title{
+    font-weight: 700;
+font-size: 24px;
+line-height: 32px;
+color: #292B2E;
+}
+
+.card-subtitle{
+    font-weight: 600;
+font-size: 13px;
+line-height: 28px;
+color: #586069;
+}
+
+.card-text{
+    line-height: 26px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #292B2E !important;
+}
+
+#linkCard{
+    text-decoration: none;
+    cursor: pointer;
+}
+
