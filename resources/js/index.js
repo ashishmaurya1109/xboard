@@ -72,45 +72,47 @@ function addTopics(linksArray) {
 
 function addCarousel() {
   const accordionBody = document.getElementsByClassName("accordion-body");
-   let index=0;
+  let index = 0;
   for (const i of accordionBody) {
     i.innerHTML = "";
     i.innerHTML = `
-        <div id="carouselExampleControls-${index+1}" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleControls-${
+          index + 1
+        }" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-${index+1}" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-${
+          index + 1
+        }" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-${index+1}" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-${
+          index + 1
+        }" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
         `;
 
-        index++;
+    index++;
   }
 }
 
 async function addCard(items) {
   const carouselInner = document.getElementsByClassName("carousel-inner");
 
-  for (let i=0;i<carouselInner.length;i++){
-   
-    // try{
-
-        items[i].forEach((ele,index) => {
-           
-            const carouselItem = document.createElement('div');
-            carouselItem.classList.add('carousel-item');
-            if(index===0) carouselItem.classList.add('active');
-            console.log(ele.enclosure.link)
-            const d = new Date(ele.pubDate);
-            let date = d.toLocaleDateString("en-IN");
-            carouselItem.innerHTML = `
+  for (let i = 0; i < carouselInner.length; i++) {
+    items[i].forEach((ele, index) => {
+      const carouselItem = document.createElement("div");
+      carouselItem.classList.add("carousel-item");
+      if (index === 0) carouselItem.classList.add("active");
+      console.log(ele.enclosure.link);
+      const d = new Date(ele.pubDate);
+      let date = d.toLocaleDateString("en-IN");
+      carouselItem.innerHTML = `
             <a href=${ele.link} target="_blank" id="linkCard">
             <div class="card">
                  <img src=${ele.enclosure.link} class="card-img-top" alt="...">
@@ -124,31 +126,23 @@ async function addCard(items) {
             </a>
             `;
 
-            carouselInner[i].append(carouselItem);
-
-        })
-
-
-    // } catch(e){
-    //     console.log(e);
-    // }
-    
-
+      carouselInner[i].append(carouselItem);
+    });
   }
-
 }
 
-async function getItems(){
-    let itemsArray = [];
-    for(const i of magazines){
+async function getItems() {
+  let itemsArray = [];
+  for (const i of magazines) {
+    const response = await fetch(
+      `https://api.rss2json.com/v1/api.json?rss_url=${i}`
+    );
+    const data = await response.json();
+    itemsArray.push(data.items);
+  }
 
-    const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${i}`)
-        const data = await response.json();
-        itemsArray.push(data.items);
-    }
-
-    console.log(itemsArray);
-    return itemsArray;
+  console.log(itemsArray);
+  return itemsArray;
 }
 async function start() {
   let linksArray = await getTopicsFromLinks();
@@ -159,5 +153,3 @@ async function start() {
 }
 
 start();
-
-
